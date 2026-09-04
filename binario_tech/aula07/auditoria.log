@@ -1,0 +1,39 @@
+========================================
+AUDITORIA COMPLETA DO SERVIDOR
+Data: Thu Aug 20 09:18:56 PM UTC 2026
+========================================
+
+Consultando: /api/v1/telemetria/scania
+Status HTTP: 200
+
+Consultando: /api/v1/telemetria/mercedes
+Status HTTP: 200
+
+Auditoria finalizada.
+========================================
+========================================
+AUDITORIA COMPLETA DO SERVIDOR
+Data: Thu Aug 20 09:19:00 PM UTC 2026
+========================================
+
+Consultando: /api/v1/telemetria/scania
+Status HTTP: 200
+
+Consultando: /api/v1/telemetria/mercedes
+Status HTTP: 200
+
+Auditoria finalizada.
+========================================
+========================================
+AUDITORIA COMPLETA DO SERVIDOR
+Data: Thu Aug 20 09:19:35 PM UTC 2026
+========================================
+
+Consultando: /api/v1/telemetria/scania
+Status HTTP: 200
+
+Consultando: /api/v1/telemetria/mercedes
+Status HTTP: 200
+
+Auditoria finalizada.
+========================================
