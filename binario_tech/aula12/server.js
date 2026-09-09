@@ -13,7 +13,8 @@ app.use(express.json());
 app.use('/api/v1/manutencoes', manutencaoRoutes);
 
 conectarBanco().then(() => {
-	app.listen(PORT, () => {
-		console.log(`[Binário Tech] Servidor NoSQL Aula 12 ativo na porta ${PORT}`);
-	});
+  app.listen(PORT, () => {
+    console.log(`[Binário Tech] Servidor NoSQL Aula 12 ativo na porta ${PORT}`);
+  });
 });
+

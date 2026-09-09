@@ -1,74 +1,138 @@
 const Manutencao = require('../models/Manutencao');
 
 const manutencaoController = {
-	// Criar Registro com Subdocumentos
-	criar: async (req, res) => {
-		try {
-			const novaManutencao = await Manutencao.create(req.body);
-			res.status(201).json(novaManutencao);
-		} catch (erro) {
-			res.status(400).json({ erro: "Erro ao registrar manutenção", detalhe: erro.message });
-		}
-	},
+  // Criar Registro com Subdocumentos
+  criar: async (req, res) => {
+    try {
+      const novaManutencao = await Manutencao.create(req.body);
+      res.status(201).json(novaManutencao);
+    } catch (erro) {
+      res.status(400).json({
+        erro: "Erro ao registrar manutenção",
+        detalhe: erro.message
+      });
+    }
+  },
 
-	// Listar com Filtro Avançado ($gte / $lte em Custo)
-	listarComFiltros: async (req, res) => {
-		try {
-			const { minCusto, status } = req.query;
-			let query = {};
-			
-			if (minCusto) {
-				query.custoTotal = { $gte: Number(minCusto) };
-			}
+  // Listar com Filtro Avançado ($gte / $lte em Custo)
+  listarComFiltros: async (req, res) => {
+    try {
+      const { minCusto, status } = req.query;
+      let query = {};
 
-			if (status) {
-				query.status = status;
-			}
+      if (minCusto) {
+        query.custoTotal = { $gte: Number(minCusto) };
+      }
 
-			const resultados = await Manutencao.find(query).sort({ createdAt: -1 });
-				res.status(200).json(resultados);
-		} catch (erro) {
-			res.status(500).json({ erro: "Erro ao consultar manutenções." });
-		}
-	},
+      if (status) {
+        query.status = status;
+      }
 
-	// Atualizar Status por ID
-	atualizarStatus: async(req, res) => {
-		try {
-			const { id } = req.params;
-			const { status } = req.body;
+      const resultados = await Manutencao.find(query).sort({ createdAt: -1 });
+      res.status(200).json(resultados);
+    } catch (erro) {
+      res.status(500).json({
+        erro: "Erro ao consultar manutenções."
+      });
+    }
+  },
 
-			const atualizado = await Manutencao.findByIdAndUpdate(
-				id,
-				{ status },
-				{ new: true, runValidators: true }
-			);
+  // Buscar Manutenções pela Placa
+// Busca parcial e case-insensitive utilizando $regex
+buscarPorPlaca: async (req, res) => {
+  try {
+    const { placa } = req.params;
 
-			if(!atualizado) {
-				return res.status(404).json({ erro: "Registro de manutenção não encontrado." });
-			}
+    const resultados = await Manutencao.find({
+      veiculoPlaca: {
+        $regex: placa,
+        $options: 'i'
+      }
+    });
 
-			res.status(200).json(atualizado);
-		} catch (erro) {
-			res.status(400).json({ erro: "Erro ao atualizar registro.", detalhe: erro.message });
-		}
-	},
-		
-	// Deletar Registro por ID
-	excluir: async (req, res) => {
-		try {
-			const { id } = req.params;
-			const removido = await Manutencao.findByIdAndDelete(id);
+    res.status(200).json(resultados);
+  } catch (erro) {
+    res.status(500).json({
+      erro: "Erro ao buscar manutenções pela placa.",
+      detalhe: erro.message
+    });
+  }
+},
+	  // Adicionar Peça ao array de subdocumentos usando $push
+  adicionarPeca: async (req, res) => {
+    try {
+      const { id } = req.params;
+      const novaPeca = req.body;
 
-			if (!removido) {
-				return res.status(404).json ({ erro: "Registro não encontrado para exclusão." });
-			}
+      const manutencaoAtualizada = await Manutencao.findByIdAndUpdate(
+        id,
+        { $push: { pecasSubstituidas: novaPeca } },
+        { new: true, runValidators: true }
+      );
 
-			res.status(200).json({ mensagem: "Registro de manutenção excluído com sucesso!" });
-		} catch (erro) {
-			res.status(500).json({ erro: "Erro ao excluir registro." });
-		}
-	}
+      if (!manutencaoAtualizada) {
+        return res.status(404).json({
+          erro: "Registro de manutenção não encontrado."
+        });
+      }
+
+      res.status(200).json(manutencaoAtualizada);
+    } catch (erro) {
+      res.status(400).json({
+        erro: "Erro ao adicionar peça.",
+        detalhe: erro.message
+      });
+    }
+  },
+
+  // Atualizar Status por ID
+  atualizarStatus: async (req, res) => {
+    try {
+      const { id } = req.params;
+      const { status } = req.body;
+
+      const atualizado = await Manutencao.findByIdAndUpdate(
+        id,
+        { status },
+        { new: true, runValidators: true }
+      );
+
+      if (!atualizado) {
+        return res.status(404).json({
+          erro: "Registro de manutenção não encontrado."
+        });
+      }
+
+      res.status(200).json(atualizado);
+    } catch (erro) {
+      res.status(400).json({
+        erro: "Erro ao atualizar registro.",
+        detalhe: erro.message
+      });
+    }
+  },
+
+  // Deletar Registro por ID
+  excluir: async (req, res) => {
+    try {
+      const { id } = req.params;
+      const removido = await Manutencao.findByIdAndDelete(id);
+
+      if (!removido) {
+        return res.status(404).json({
+          erro: "Registro não encontrado para exclusão."
+        });
+      }
+
+      res.status(200).json({
+        mensagem: "Registro de manutenção excluído com sucesso!"
+      });
+    } catch (erro) {
+      res.status(500).json({
+        erro: "Erro ao excluir registro."
+      });
+    }
+  }
 };
 
 module.exports = manutencaoController;

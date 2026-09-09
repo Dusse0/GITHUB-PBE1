@@ -26,3 +26,4 @@ echo -e "\n[3] Atualizando Status da Manutenção (ID: $ID) para CONCLUIDA..."
 curl -s -X PATCH "http://localhost:3000/api/v1/manutencoes/$ID/status" \
   -H "Content-Type: application/json" \
   -d '{"status": "CONCLUIDA"}' | jq .
+
