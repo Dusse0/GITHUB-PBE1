@@ -5,7 +5,7 @@ const gerenciadorErros = require('./src/middlewares/gerenciadorErros');
 const verificarJson = require('./src/middlewares/verificarJson');
 
 const app = express();
-const PORT = 3000;
+const PORT = 3029;
 
 app.use(cors());
 app.use(express.json());

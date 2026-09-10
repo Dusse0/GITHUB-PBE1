@@ -5,7 +5,7 @@ const conectarBanco = require('./src/config/database');
 const manutencaoRoutes = require('./src/routes/manutencaoRoutes');
 
 const app = express();
-const PORT = process.env.PORT || 3000;
+const PORT = process.env.PORT || 3090;
 
 app.use(cors());
 app.use(express.json());
@@ -17,4 +17,3 @@ conectarBanco().then(() => {
     console.log(`[Binário Tech] Servidor NoSQL Aula 12 ativo na porta ${PORT}`);
   });
 });
-

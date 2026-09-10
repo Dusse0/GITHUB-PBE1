@@ -1,6 +1,6 @@
 const express = require('express');
 const app = express();
-const PORT = 3000;
+const PORT = 3029;
 
 app.use(express.json());
 
@@ -35,5 +35,5 @@ app.get('/vw/info', (req, res) => {
 });
 
 app.listen(PORT, () => {
-    console.log('Servidor rodando com sucesso na porta 3000');
+    console.log(`Servidor rodando com sucesso na porta ${PORT}`);
 });
