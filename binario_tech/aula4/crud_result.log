@@ -1,5 +1,5 @@
 === INICIANDO TESTE AUTOMATIZADO CRUD ===
-Data: Thu Aug  6 09:37:10 PM UTC 2026
+Data: Thu Sep 10 05:57:39 PM UTC 2026
 -----------------------------------------
 
 [1/4] POST - Cadastrando primeiro veículo...
@@ -8,7 +8,7 @@ X-Powered-By: Express
 Content-Type: application/json; charset=utf-8
 Content-Length: 86
 ETag: W/"56-Bbisuyq5lgZfv9Gn5OBbmLkLRSg"
-Date: Thu, 06 Aug 2026 21:37:10 GMT
+Date: Thu, 10 Sep 2026 17:57:39 GMT
 Connection: keep-alive
 Keep-Alive: timeout=5
 
@@ -19,7 +19,7 @@ X-Powered-By: Express
 Content-Type: application/json; charset=utf-8
 Content-Length: 87
 ETag: W/"57-2Faqz8iKS/VBEOL6KcAf5uuqNmI"
-Date: Thu, 06 Aug 2026 21:37:10 GMT
+Date: Thu, 10 Sep 2026 17:57:39 GMT
 Connection: keep-alive
 Keep-Alive: timeout=5
 
@@ -30,7 +30,7 @@ X-Powered-By: Express
 Content-Type: application/json; charset=utf-8
 Content-Length: 139
 ETag: W/"8b-PQpJO8tvJ3XQRuNA5B/il5xeGNs"
-Date: Thu, 06 Aug 2026 21:37:11 GMT
+Date: Thu, 10 Sep 2026 17:57:39 GMT
 Connection: keep-alive
 Keep-Alive: timeout=5
 
@@ -41,7 +41,7 @@ X-Powered-By: Express
 Content-Type: application/json; charset=utf-8
 Content-Length: 49
 ETag: W/"31-IHo0Pne/lcuLPk4qfq+tyZC4ZwE"
-Date: Thu, 06 Aug 2026 21:37:11 GMT
+Date: Thu, 10 Sep 2026 17:57:39 GMT
 Connection: keep-alive
 Keep-Alive: timeout=5
 

@@ -5,7 +5,7 @@ echo " AUDITORIA DE DOCUMENTOS NOSQL - BINÁRIO TECH "
 echo "=============================================="
 
 echo -e "\n[1] Criando Alerta Crítico no MongoDB..."
-curl -s -X POST http://localhost:3000/api/v1/alertas \
+curl -s -X POST http://localhost:3029/api/v1/alertas \
         -H "Content-Type: application/json" \
         -d '{
                 "equipamentoId": "SCANIA-R500-01",
@@ -18,4 +18,4 @@ curl -s -X POST http://localhost:3000/api/v1/alertas \
         }' | jq .
 
 echo -e "\n[2] Consultando Coleção de Alertas..."
-curl -s http://localhost:3000/api/v1/alertas | jq .
+curl -s http://localhost:3029/api/v1/alertas | jq .

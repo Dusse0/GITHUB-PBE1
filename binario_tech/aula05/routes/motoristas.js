@@ -15,7 +15,7 @@ router.get('/', (req, res) => {
 // POST /api/v1/motoristas (Com validacao online)
 
 router.post('/', (req, res) => {
-        const ( nome, cnh, categoria ) = req.body;
+        const { nome, cnh, categoria } = req.body;
 
         if (!nome || !cnh || !categoria) {
                 return res.status (400).json({ erro: "Campos 'nome', 'cnh' e 'categoria' sao obrigatorios." });
