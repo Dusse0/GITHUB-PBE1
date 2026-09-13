@@ -1,6 +1,7 @@
 require('dotenv').config();
 const express = require('express');
 const cors = require('cors');
+const jwt = require('jsonwebtoken');
 const conectarBanco = require('./src/config/database');
 const autenticar = require('./src/middlewares/autenticar');
 
@@ -18,6 +19,17 @@ app.get('/api/v1/health', (req, res) => {
 // Rota Protegida do Simulado
 app.get('/api/v1/simulado/status', autenticar, (req, res) => {
   res.json({ mensagem: "Acesso autorizado no Servidor Local!", usuario: req.usuario });
+});
+
+// Rota para gerar token de teste
+app.post('/api/v1/auth/token-teste', (req, res) => {
+  const token = jwt.sign(
+    { nome: "aluno" },
+    process.env.JWT_SECRET,
+    { expiresIn: '5m' }
+  );
+
+  res.json({ token });
 });
 
 conectarBanco().then(() => {
