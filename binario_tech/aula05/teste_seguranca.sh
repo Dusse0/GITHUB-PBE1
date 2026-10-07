@@ -1,6 +1,6 @@
 #!/bin/bash
 
-URL="http://localhost:3000/api/v1/motoristas"
+URL="http://localhost:3029/api/v1/motoristas"
 CHAVE="binario-tech-secret-2026"
 LOG="audit_seguranca.log"
 

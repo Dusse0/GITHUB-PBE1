@@ -18,14 +18,12 @@ let manutencoes = [
     }
 ];
 
-// GET /api/v1/manutencoes
 // Lista todas as manutencoes
 
 router.get('/', (req, res) => {
     res.status(200).json(manutencoes);
 });
 
-// POST /api/v1/manutencoes
 // Cadastra uma nova manutencao
 
 router.post('/', (req, res) => {
@@ -46,7 +44,6 @@ router.post('/', (req, res) => {
     };
 
     manutencoes.push(novaManutencao);
-
     res.status(201).json(novaManutencao);
 });
 

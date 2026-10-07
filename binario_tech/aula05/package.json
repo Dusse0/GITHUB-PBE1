@@ -1,7 +1,9 @@
 {
   "dependencies": {
     "cors": "^2.8.6",
+    "curl": "^0.1.4",
     "express": "^5.2.1",
-    "expresse": "^1.0.2"
+    "expresse": "^1.0.2",
+    "httpie": "^1.1.2"
   }
 }
