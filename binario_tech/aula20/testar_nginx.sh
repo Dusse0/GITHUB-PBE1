@@ -3,7 +3,10 @@ echo "================================================="
 echo " AUDITORIA DE PROXY REVERSO NGINX - BINÁRIO TECH "
 echo "================================================="
 
-HTTP_CODE=$(curl -s -o /dev/null -w "%{http_code}" http://localhost:8029/api/v1/proxy/info)
+HTTP_CODE=$(curl -s -o /dev/null -w "%{http_code}" http://localhost:3029/api/v1/proxy/info)
+
+echo "Testando acesso via Nginx na porta 3029..."
+echo "HTTP Status Code: $HTTP_CODE"
 
 if [ "$HTTP_CODE" -eq 200 ]; then
         echo -e "\n[OK] Proxy Reverso Nginx encaminhando tráfego com sucesso!"
