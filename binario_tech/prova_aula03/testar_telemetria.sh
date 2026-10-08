@@ -8,7 +8,7 @@ echo -e "\n(1) Testando Rota Scania!..."
 sleep 1
 curl -s http://localhost:3029/api/v1/scania | jq .
 
-echo -e "\n(20 Testando Rota Mercedes-Benz!..."
+echo -e "\n(2) Testando Rota Mercedes-Benz!..."
 sleep 1
 curl -s http://localhost:3029/api/v1/mercedes | jq .
 
