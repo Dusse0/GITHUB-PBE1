@@ -1,0 +1,14 @@
+{
+  "name": "prova_aula03",
+  "version": "1.0.0",
+  "description": "",
+  "main": "telemetria.js",
+  "scripts": {
+	  "start": "node telemetria.js"
+  },
+  "keywords": [],
+  "type": "commonjs",
+  "dependencies": {
+    "express": "^5.2.1"
+  }
+}
