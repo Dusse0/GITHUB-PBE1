@@ -10,10 +10,9 @@ const ARQUIVO_DADOS = path.join(__dirname, 'ocorrencias.json');
 app.use(cors());
 app.use(express.json());
 
-// Função Auxiliar: Ler Arquivos JSON
+// Ler Arquivos JSON
 async function lerOcorrencias() {
     try {
-        // CORRIGIDO: fs.readFile com 'F' maiúsculo
         const dados = await fs.readFile(ARQUIVO_DADOS, 'utf-8');
         return JSON.parse(dados);
     } catch (erro) {
@@ -23,7 +22,7 @@ async function lerOcorrencias() {
     }
 }
 
-// Função Auxiliar: Salvar no Arquivo JSON
+// Salvar no Arquivo JSON
 async function salvarOcorrencias(ocorrencias) {
     await fs.writeFile(ARQUIVO_DADOS, JSON.stringify(ocorrencias, null, 2), 'utf-8');
 }
@@ -68,7 +67,6 @@ app.post('/api/v1/ocorrencias', async (req, res) => {
 });
 
 // ROTA 3: Filtrar ocorrências registradas por montadora
-// CORRIGIDO: Adicionado os dois pontos (:nome) para indicar parâmetro de rota
 app.get('/api/v1/ocorrencias/montadora/:nome', async (req, res) => {
     try {
         const { nome } = req.params;

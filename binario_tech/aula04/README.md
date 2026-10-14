@@ -54,35 +54,116 @@ curl -s -X DELETE http://localhost:3029/api/v1/veiculos/2 | jq .
 
 ### Exercício 01
 
-Buscar o veículo de ID 1 utilizando GET e exibir o resultado com jq.
+curl -s http://localhost:3029/api/1v/veiculos/1 | jq .
 
 ### Exercício 02
 
-Cadastrar um caminhão Volvo FH 540 com a placa KLL-9090 utilizando POST e verificar o status 201.
+curl -i http://127.0.0.1:3029/api/v1/veiculos -H "Content-Type: application/json" -d '{"montadora":"Volvo","modelo":"FH 540","placa":"KLL-9090"}'
 
 ### Exercício 03
 
-Tentar cadastrar um veículo sem informar a placa e verificar o status 400.
+curl -i http://127.0.0.1:3029/api/v1/veiculos -H "Content-Type: application/json" -d '{"montadora":"Volvo","modelo":"FH 540"}'
 
 ### Exercício 04
 
-Filtrar os veículos pelo status DISPONIVEL utilizando Query Param.
+curl -i "http://127.0.0.1:3029/api/v1/veiculos?status=DISPONIVEL"
 
 ### Exercício 05
 
-Atualizar o status do veículo de ID 3 para EM_ROTA utilizando PATCH.
+curl -i -X PATCH "http://127.0.0.1:3029/api/v1/veiculos/3/status" \
+  -H "Content-Type: application/json" \
+  -d '{"status":"EM_ROTA"}'
 
 ### Exercício 06
 
-Tentar atualizar ou deletar um veículo inexistente e verificar o status 404.
+- Atualizar
+
+curl -i -X PATCH "http://127.0.0.1:3029/api/v1/veiculos/99/status" \ 
+    -H "Content-Type: application/json" \
+    -d '{"status":"EM_ROTA"}'
+
+- Deletar
+
+curl -i -X DELETE "http://127.0.0.1:3029/api/v1/veiculos/99"
 
 ### Exercício 07
 
-Adicionar uma rota PUT para substituir todos os dados de um veículo.
+- Codigo PUT
+
+// 4. PUT /api/v1/veiculos/:id - Substituir veículo completo
+app.put('/api/v1/veiculos/:id', (req, res) => {
+    const id = parseInt(req.params.id);
+    const { placa, montadora, modelo, status } = req.body;
+
+    // No PUT, todos os campos do recurso são obrigatórios
+    if (!placa || !montadora || !modelo || !status) {
+        return res.status(400).json({
+            erro: "Campos 'placa', 'montadora', 'modelo' e 'status' são obrigatórios para PUT."
+        });
+    }
+
+    const index = veiculos.findIndex(v => v.id === id);
+
+    if (index === -1) {
+        return res.status(404).json({
+            erro: "Veículo não encontrado."
+        });
+    }
+
+    // Substitui o objeto mantendo o mesmo ID
+    veiculos[index] = {
+        id,
+        placa,
+        montadora,
+        modelo,
+        status: status.toUpperCase()
+    };
+
+    res.status(200).json({
+        mensagem: "Veículo totalmente atualizado com sucesso!",
+        veiculo: veiculos[index]
+    });
+});
+
+- Comando do PUT (substitua informações se necessário)
+
+curl -i -X PUT "http://127.0.0.1:3029/api/v1/veiculos/1" \
+  -H "Content-Type: application/json" \
+  -d '{"placa":"XYZ-9999","montadora":"Volvo","modelo":"FH 540","status":"MANUTENCAO"}'
 
 ### Exercício 08
 
-Criar o script teste_crud.sh para automatizar operações de cadastro, atualização e exclusão, registrando os resultados em crud_result.log.
+- Código do teste_crud.sh (atualizei no dia 14/10/2026 pra padronizar com os códigos mais recentes daBinário Tech. Seu funcionamento está dando certo!)
+
+#!/bin/bash
+
+exec > >(tee crud_result.log) 2>&1
+
+echo "========================================="
+echo "       TESTE CRUD - BINARIO TECH         "
+echo "       Data/Hora: $(date)"
+echo "========================================="
+
+echo -e "\n[1] Cadastrando primeiro veiculo..."
+curl -s -X POST "http://127.0.0.1:3029/api/v1/veiculos" \
+  -H "Content-Type: application/json" \
+  -d '{"placa":"ABC-1010","montadora":"Scania","modelo":"R450"}' | jq .
+
+echo -e "\n[2] Cadastrando segundo veiculo..."
+curl -s -X POST "http://127.0.0.1:3029/api/v1/veiculos" \
+  -H "Content-Type: application/json" \
+  -d '{"placa":"KLL-9090","montadora":"Volvo","modelo":"FH 540"}' | jq .
+
+echo -e "\n[3] Atualizando status do veiculo ID 1..."
+curl -s -X PATCH "http://127.0.0.1:3029/api/v1/veiculos/3/status" \
+  -H "Content-Type: application/json" \
+  -d '{"status":"EM_ROTA"}' | jq .
+
+echo -e "\n[4] Removendo veiculo ID 2..."
+curl -s -X DELETE "http://127.0.0.1:3029/api/v1/veiculos/4" | jq .
+
+echo -e "\n-----------------------------------------"
+echo " Testes finalizados com sucesso!"
 
 ## Script de teste
 
