@@ -1,0 +1,41 @@
+=========================================
+       TESTE CRUD - BINARIO TECH         
+       Data/Hora: qui 15 out 2026 14:25:17 -03
+=========================================
+
+[1] Cadastrando primeiro veiculo...
+{
+  "id": 5,
+  "placa": "ABC-1010",
+  "montadora": "Scania",
+  "modelo": "R450",
+  "status": "DISPONIVEL"
+}
+
+[2] Cadastrando segundo veiculo...
+{
+  "id": 6,
+  "placa": "KLL-9090",
+  "montadora": "Volvo",
+  "modelo": "FH 540",
+  "status": "DISPONIVEL"
+}
+
+[3] Filtrando veiculos com status DISPONIVEL...
+[{"id":1,"placa":"ABC-1234","montadora":"Scania","modelo":"R450","status":"DISPONIVEL"},{"id":5,"placa":"ABC-1010","montadora":"Scania","modelo":"R450","status":"DISPONIVEL"},{"id":6,"placa":"KLL-9090","montadora":"Volvo","modelo":"FH 540","status":"DISPONIVEL"}]
+[4] Atualizando status do carro ID 3...
+{
+  "mensagem": "Status atualizado com sucesso!",
+  "veiculo": {
+    "id": 3,
+    "placa": "ABC-1010",
+    "montadora": "Scania",
+    "modelo": "R450",
+    "status": "MANUNTENCAO"
+  }
+}
+
+[5] Substituição completa do carro ID 4...
+{"mensagem":"Veiculo totalmente atualizado com sucesso!","veiculo":{"id":4,"placa":"XYZ-9999","montadora":"Volkswagen","modelo":"GH500","status":"MANUTENCAO"}}
+-----------------------------------------
+ Testes finalizados com sucesso!
