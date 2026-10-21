@@ -1,30 +1,28 @@
 #!/bin/bash
 
-URL="http://localhost:3029/api/v1/motoristas"
+exec > >(tee audit_seguranca.log) 2>&1
+
 CHAVE="binario-tech-secret-2026"
-LOG="audit_seguranca.log"
 
-echo "===== TESTE DE SEGURANCA =====" > "$LOG"
-echo "Data: $(date)" >> "$LOG"
-echo "" >> "$LOG"
+echo "========================================="
+echo "    TESTE DE SEGURANCA - BINARIO TECH    "
+echo "    Data/Hora: $(date)"
+echo "========================================="
 
-echo "Tentativa 1 - Sem chave:" >> "$LOG"
-curl -i -X GET "$URL" >> "$LOG" 2>&1
-echo -e "\n" >> "$LOG"
+echo -e "\n[1] Testando acesso sem chave de API..."
+curl -i -X GET "http://127.0.0.1:3029/api/v1/motoristas"
 
-echo "Tentativa 2 - Sem chave:" >> "$LOG"
-curl -i -X GET "$URL" >> "$LOG" 2>&1
-echo -e "\n" >> "$LOG"
+echo -e "\n[2] Testando acesso sem chave de API..."
+curl -i -X GET "http://127.0.0.1:3029/api/v1/motoristas"
 
-echo "Tentativa 3 - Sem chave:" >> "$LOG"
-curl -i -X GET "$URL" >> "$LOG" 2>&1
-echo -e "\n" >> "$LOG"
+echo -e "\n[3] Testando acesso sem chave de API..."
+curl -i -X GET "http://127.0.0.1:3029/api/v1/motoristas"
 
-echo "Tentativa 4 - Com chave valida:" >> "$LOG"
-curl -i -X GET "$URL" \
--H "X-API-KEY: $CHAVE" >> "$LOG" 2>&1
-echo -e "\n" >> "$LOG"
+echo -e "\n[4] Testando acesso com chave de API valida..."
+curl -i -X GET "http://127.0.0.1:3029/api/v1/motoristas" \
+  -H "X-API-KEY: $CHAVE"
 
-echo "===== TESTE FINALIZADO =====" >> "$LOG"
-
-echo "Testes realizados. Resultados salvos em $LOG"
+echo -e "\n-----------------------------------------"
+echo " Testes finalizados!"
+echo " Resultados salvos em audit_seguranca.log"
+echo "-----------------------------------------"
