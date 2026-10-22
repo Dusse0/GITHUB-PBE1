@@ -1,0 +1,144 @@
+===================================
+ TESTE DE SEGURANCA - BINARIO TECH 
+ Data/Hora: qui 22 out 2026 12:33:32 -03
+===================================
+
+[1] Testando acesso nao autorizado...
+  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
+                                 Dload  Upload   Total   Spent    Left  Speed
+  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0100    72  100    72    0     0  10481      0 --:--:-- --:--:-- --:--:-- 12000
+HTTP/1.1 401 Unauthorized
+X-Powered-By: Express
+Access-Control-Allow-Origin: *
+Content-Type: application/json; charset=utf-8
+Content-Length: 72
+ETag: W/"48-oOiFH600h10LbPi34eB9hlxEOAU"
+Date: Thu, 22 Oct 2026 15:33:32 GMT
+Connection: keep-alive
+Keep-Alive: timeout=5
+
+{"erro":"Acesso nao autorizado, Header 'X-API-KEY' invalido ou ausente"}
+[2] Testando acesso com chave invalida...
+  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
+                                 Dload  Upload   Total   Spent    Left  Speed
+  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0100    72  100    72    0     0  89775      0 --:--:-- --:--:-- --:--:-- 72000
+HTTP/1.1 401 Unauthorized
+X-Powered-By: Express
+Access-Control-Allow-Origin: *
+Content-Type: application/json; charset=utf-8
+Content-Length: 72
+ETag: W/"48-oOiFH600h10LbPi34eB9hlxEOAU"
+Date: Thu, 22 Oct 2026 15:33:32 GMT
+Connection: keep-alive
+Keep-Alive: timeout=5
+
+{"erro":"Acesso nao autorizado, Header 'X-API-KEY' invalido ou ausente"}./teste_seguranca.sh: linha 17: -H: comando não encontrado
+
+[3] Testando erro de validacao da CNH...
+  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
+                                 Dload  Upload   Total   Spent    Left  Speed
+  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0100    95  100    63  100    32  10776   5473 --:--:-- --:--:-- --:--:-- 19000
+HTTP/1.1 400 Bad Request
+X-Powered-By: Express
+Access-Control-Allow-Origin: *
+Content-Type: application/json; charset=utf-8
+Content-Length: 63
+ETag: W/"3f-ATbLMiMgp8Xuf/SIBqbBe4wK7Es"
+Date: Thu, 22 Oct 2026 15:33:32 GMT
+Connection: keep-alive
+Keep-Alive: timeout=5
+
+{"ERRO":"Campos 'nome', 'cnh' e 'categoria' sao obrigatorios."}
+[4] Testando rota inexistente...
+  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
+                                 Dload  Upload   Total   Spent    Left  Speed
+  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0100    60  100    60    0     0  70422      0 --:--:-- --:--:-- --:--:-- 60000
+HTTP/1.1 404 Not Found
+X-Powered-By: Express
+Access-Control-Allow-Origin: *
+Content-Type: application/json; charset=utf-8
+Content-Length: 60
+ETag: W/"3c-LkEueefrLoLpmwyYFnBqPjzdmCs"
+Date: Thu, 22 Oct 2026 15:33:32 GMT
+Connection: keep-alive
+Keep-Alive: timeout=5
+
+{"ERRO":"Endpoint nao encontrado no servidor Binario Tech."}
+[5] Listando motoristas + testando chave valida...
+  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
+                                 Dload  Upload   Total   Spent    Left  Speed
+  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0100   164  100   164    0     0   182k      0 --:--:-- --:--:-- --:--:--  160k
+HTTP/1.1 200 OK
+X-Powered-By: Express
+Access-Control-Allow-Origin: *
+Content-Type: application/json; charset=utf-8
+Content-Length: 164
+ETag: W/"a4-f5qpCWYdF/FF38V5fekvwgaZWlA"
+Date: Thu, 22 Oct 2026 15:33:32 GMT
+Connection: keep-alive
+Keep-Alive: timeout=5
+
+[{"id":1,"nome":"Carlos Silva","cnh":"12345678900","categoria":"E","ativo":"true"},{"id":2,"nome":"Ana Pereira","cnh":"98765432100","categoria":"D","ativo":"true"}]
+[6] Testando consulta das manutencoes...
+  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
+                                 Dload  Upload   Total   Spent    Left  Speed
+  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0100    72  100    72    0     0   114k      0 --:--:-- --:--:-- --:--:-- 72000
+HTTP/1.1 401 Unauthorized
+X-Powered-By: Express
+Access-Control-Allow-Origin: *
+Content-Type: application/json; charset=utf-8
+Content-Length: 72
+ETag: W/"48-oOiFH600h10LbPi34eB9hlxEOAU"
+Date: Thu, 22 Oct 2026 15:33:32 GMT
+Connection: keep-alive
+Keep-Alive: timeout=5
+
+{"erro":"Acesso nao autorizado, Header 'X-API-KEY' invalido ou ausente"}./teste_seguranca.sh: linha 34: -H: comando não encontrado
+
+[7] Testando cadastro correto dos motoristas...
+  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
+                                 Dload  Upload   Total   Spent    Left  Speed
+  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0100   138  100    79  100    59  85037  63509 --:--:-- --:--:-- --:--:--  134k
+HTTP/1.1 201 Created
+X-Powered-By: Express
+Access-Control-Allow-Origin: *
+Content-Type: application/json; charset=utf-8
+Content-Length: 79
+ETag: W/"4f-8VWfruLwV5/OS/1OuAIVR3Cey2M"
+Date: Thu, 22 Oct 2026 15:33:32 GMT
+Connection: keep-alive
+Keep-Alive: timeout=5
+
+{"id":3,"nome":"João Santos","cnh":"12345678901","categoria":"E","ativo":true}
+[8] Testando cadastro correto das manutencoes...
+  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
+                                 Dload  Upload   Total   Spent    Left  Speed
+  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0100  1479  100  1479    0     0   790k      0 --:--:-- --:--:-- --:--:-- 1444k
+HTTP/1.1 500 Internal Server Error
+X-Powered-By: Express
+Access-Control-Allow-Origin: *
+Content-Security-Policy: default-src 'none'
+X-Content-Type-Options: nosniff
+Content-Type: text/html; charset=utf-8
+Content-Length: 1479
+Date: Thu, 22 Oct 2026 15:33:32 GMT
+Connection: keep-alive
+Keep-Alive: timeout=5
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Error</title>
+</head>
+<body>
+<pre>TypeError: Cannot destructure property &#39;caminhao&#39; of &#39;req.body&#39; as it is undefined.<br> &nbsp; &nbsp;at /home/myguel.dusse/GITHUB-PBE1/binario_tech/prova_aula05/routes/manutencoes.js:30:13<br> &nbsp; &nbsp;at Layer.handleRequest (/home/myguel.dusse/GITHUB-PBE1/binario_tech/prova_aula05/node_modules/router/lib/layer.js:152:17)<br> &nbsp; &nbsp;at next (/home/myguel.dusse/GITHUB-PBE1/binario_tech/prova_aula05/node_modules/router/lib/route.js:157:13)<br> &nbsp; &nbsp;at Route.dispatch (/home/myguel.dusse/GITHUB-PBE1/binario_tech/prova_aula05/node_modules/router/lib/route.js:117:3)<br> &nbsp; &nbsp;at handle (/home/myguel.dusse/GITHUB-PBE1/binario_tech/prova_aula05/node_modules/router/index.js:435:11)<br> &nbsp; &nbsp;at Layer.handleRequest (/home/myguel.dusse/GITHUB-PBE1/binario_tech/prova_aula05/node_modules/router/lib/layer.js:152:17)<br> &nbsp; &nbsp;at /home/myguel.dusse/GITHUB-PBE1/binario_tech/prova_aula05/node_modules/router/index.js:295:15<br> &nbsp; &nbsp;at processParams (/home/myguel.dusse/GITHUB-PBE1/binario_tech/prova_aula05/node_modules/router/index.js:582:12)<br> &nbsp; &nbsp;at next (/home/myguel.dusse/GITHUB-PBE1/binario_tech/prova_aula05/node_modules/router/index.js:291:5)<br> &nbsp; &nbsp;at Function.handle (/home/myguel.dusse/GITHUB-PBE1/binario_tech/prova_aula05/node_modules/router/index.js:186:3)</pre>
+</body>
+</html>
+curl: (3) URL rejected: Malformed input to a URL function
+./teste_seguranca.sh: linha 46: -d: comando não encontrado
+
+===================================
+ Teste finalizados!
+ Resultados salvos em audit_seguranca.log
+==================================
